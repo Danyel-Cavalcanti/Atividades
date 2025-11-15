@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Personagens</title>
+</head>
+<body>
+
+  <h1>Personagens da API</h1>
+  <ul id="lista-personagens"></ul>
+
+  <script>
+    const API_URL = "https://rickandmortyapi.com/api/character";
+
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(data => {
+        const lista = document.getElementById("lista-personagens");
+
+        data.results.forEach(personagem => {
+          const item = document.createElement("li");
+          item.textContent = `${personagem.name}, ${personagem.species}`;
+          lista.appendChild(item);
+        });
+      })
+      .catch(error => console.error("Erro ao carregar personagens:", error));
+  </script>
+
+</body>
+</html>
